@@ -6,17 +6,14 @@
 	<style>
 		div#corpo{
 			text-align:center;
-			width: 30%;
-			height: 250px; 
-			min-width: 244px;
-			margin: 50px auto;
+			width: 35%;
+			height: 540px; 
+			min-width: 270px;
+			margin: 30px auto;
 			padding: 5px;
 			border-radius: 20px;
 			border: 2px dotted white;
-		}
-		h2{
-			margin-botton: 20px;
-			margin-top: -15px;
+			background-color: rgba(255,255,255,.6);
 		}
 		h1{
 			margin-top: -10px;
@@ -26,7 +23,7 @@
 		}
 		input{
 			border: 1px solid black;
-			width:200px;
+			width:235px;
 			height: 30px;
 			box-shadow: 0px 2px 2px black;
 			text-align:center;
@@ -35,6 +32,37 @@
 			background-color: smoke;
 			height: 40px;
 			border-radius: 20px;
+		}
+		table{
+			border-spacing: 5px;
+			margin-left:auto;
+			margin-right:auto;
+			margin-top:-30px;
+			/*border: 1px solid red;*/
+		}
+		textarea{
+			width:215px;
+			height: 80px;
+			resize: none;
+			text-align: justify;
+			font-style: italic;
+			border: 1px solid black;
+			box-shadow: 0px 2px 2px black; 
+			padding: 10px;
+		}
+		td{
+			height: 60px;
+		}
+		span.med{
+			font-size:17pt;
+		}
+		label, .peq{
+			position: relative;
+			display: block;
+			float: left;
+		}
+		span.peq{
+			font-size:10pt;
 		}
 	</style>
 	<meta charset="utf-8" />
@@ -51,17 +79,58 @@
 			}
 			i+=direc;
 		}
+		function clear(){
+			//document.getElementsByName('nome').autocomplete="off";
+			//document.getElementsByName('email').value="";
+			//document.getElementsByName('msg').value="";
+		}
+		function siz(){
+			var x = document.querySelector('.peq');
+			var y = 110 - (document.getElementById('msg').value.length);
+			x.innerHTML = "Max: "+y+" caracteres.";
+		}
 	</script>
 </head>
-<body onload="setInterval(function(){cores()},100)">
+<body onload="setInterval(function(){cores()},100); clear()">
 	<div id="corpo">
 		<h1>&#9993;</h1>
 		<form action="XServlet">
-			<h2>Cadastre seu email.</h2>
-			<input type="email" name="email" maxlength="40" />
-			<br />
-			<br />
-			<input type="submit" value="ENVIAR"/>
+			<table>
+				<thead>
+					<tr>
+						<th>
+							<span class="med">Contato</span>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<label for="nome">Nome:</label><br />
+							<input type="text" name="nome" maxlength="100" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="email">Email:</label><br />
+							<input type="email" name="email" maxlength="40" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<label for="msg">Mensagem</label><br />
+						<textarea id="msg" name="msg" maxlength="110" oninput="siz()"></textarea>
+						<br /><span class="peq">Max: 110 caracteres.</span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<br /><br />
+							<input type="submit" value="ENVIAR"/>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</form>
 	</div>
 </body>
