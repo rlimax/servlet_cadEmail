@@ -1,7 +1,3 @@
-Server: sql10.freemysqlhosting.net
-Name: sql10343354
-Username: sql10343354
-Password: ZXu9zbsiww
-Port number: 3306
+Mudança de servidor
 
-jdbc:mysql://sql10.freemysqlhosting.net/sql10343354
+jdbc:mysql://[server]/[bd]
