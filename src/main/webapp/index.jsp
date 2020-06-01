@@ -1,3 +1,5 @@
+<%@page import="dao.UsuarioDao"%>
+<%@page import="modelo.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -28,7 +30,7 @@
 			box-shadow: 0px 2px 2px black;
 			text-align:center;
 		}
-		input[type=submit]{
+		input[type=submit], input[type=button]{
 			background-color: smoke;
 			height: 40px;
 			border-radius: 20px;
@@ -91,10 +93,30 @@
 		}
 	</script>
 </head>
+<%
+
+
+String id = request.getParameter("id");
+String act = request.getParameter("act");
+
+Usuario u = new Usuario();
+UsuarioDao dao = new UsuarioDao();
+
+if(id != null){
+	out.println("<script>alert('Id:"+id+" Action:"+act+"');</script>");
+	u = dao.consulta(id);
+	act = "atualizar";
+}else{
+	act = "incluir";
+}
+
+%>
 <body onload="setInterval(function(){cores()},100); clear()">
 	<div id="corpo">
 		<h1>&#9993;</h1>
 		<form action="XServlet">
+			<input name="act" type="hidden" value="<% out.print(act); %>" />
+			<input name="id" type="hidden" value="<% out.print(id); %>" />
 			<table>
 				<thead>
 					<tr>
@@ -107,19 +129,19 @@
 					<tr>
 						<td>
 							<label for="nome">Nome:</label><br />
-							<input type="text" name="nome" maxlength="100" />
+							<input type="text" name="nome" maxlength="100" value="<% out.print(u.getNome()!= null ? u.getNome() : ""); %>"/>
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<label for="email">Email:</label><br />
-							<input type="email" name="email" maxlength="40" />
+							<input type="email" name="email" maxlength="40" value="<% out.print(u.getEmail()!= null ? u.getEmail() : ""); %>" />
 						</td>
 					</tr>
 					<tr>
 						<td>
 						<label for="msg">Mensagem</label><br />
-						<textarea id="msg" name="msg" maxlength="110" oninput="siz()"></textarea>
+						<textarea id="msg" name="msg" maxlength="110" oninput="siz()"><% out.print(u.getMensagem()!= null ? u.getMensagem() : ""); %></textarea>
 						<br /><span class="peq">Max: 110 caracteres.</span>
 						</td>
 					</tr>

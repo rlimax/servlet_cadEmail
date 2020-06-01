@@ -17,8 +17,10 @@
 			text-shadow: 0px 3px 1px black;
 		}
 		table{
+			width: 80%;
 			margin-left:auto;
 			margin-right:auto;
+			margin-botton: 40px;
 			border: 1px solid white;
 			border-spacing: 0px;
 			background-color: rgba(255,255,255,.6);
@@ -42,6 +44,21 @@
 		}
 		span.peq{
 			font-size:10pt;
+		}
+		span.ico{
+			font-size: 17pt;
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+			color: white;
+			border-radius: 20px;
+			border: 1px solid gray;
+		}
+		.verd{
+			background-color: green;
+		}
+		.verm{
+			background-color: red;
 		}
 @media (max-width: 1360px) {
   .some {
@@ -67,6 +84,7 @@
 </head>
 <body onload="setInterval(function(){cores()},100);">
 	<div id="corpo">
+		<br />
 		<h2>Lista de mensagens</h2>
 		<table>
 			<thead>
@@ -79,14 +97,16 @@
 					<th>NOME</th>
 					<th>EMAIL</th>
 					<th class="some">MENSAGEM</th>
+					<th colspan="2">AÇÃO</th>
 				</tr>
 			</thead>
 			<tbody>
 		<%
 			boolean c = true;
-			int n = 1;
+
 			UsuarioDao u = new UsuarioDao();
 			List<Usuario> l = u.ler();
+			int n = l.size();
 			for(Usuario user : l){
 				if(c){
 					out.print("<tr class=\"transp\">");
@@ -98,12 +118,14 @@
 				out.print("<td>"+n+
 						  "</td><td>"+user.getNome()+
 						  "</td><td>"+user.getEmail()+
-						  "</td><td class=\"some\">"+user.getMensagem()+"</td></tr>");
-				n++;
+						  "</td><td class=\"some\">"+user.getMensagem()+"</td>"+
+						  "<td><a href='index.jsp?id="+user.getId()+"&act=atualizar'><span title=\"alterar\" class=\"ico verd\">&#9998;</span></a></td><td><a href='XServlet?id="+user.getId()+"&act=deletar' onclick=\"return confirm('Deseja excluir esse registro?')\"><span title=\"apagar\" class=\"ico verm\">&#10005;</span></a></td></tr>");
+				n--;
 			}
 		%>
 			</tbody>
 		</table>
+		<br /><br /><br /><br />
 	</div>
 </body>
 </html>
