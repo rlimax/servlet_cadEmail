@@ -8,5 +8,5 @@ Projeto de curso Java - Servlet para cadastro de emails
   <li>Javascript</li>
   <li>HTML</li>
   <li>CSS</li>
-  <li>MySQL</li>
+  <li>MySQL in Google Cloud</li>
 </ul>
