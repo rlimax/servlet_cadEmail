@@ -14,7 +14,8 @@ public class UsuarioDao{
 		try {
 			Connection conexao = Conexao.getConn();
 			PreparedStatement sql;
-			sql = conexao.prepareStatement("insert into tb_usuario(nome, email, mensagem) values(?,?,?);");
+			//System.out.println("Usuario DAO");
+			sql = conexao.prepareStatement("insert into tb_msg(nome, email, msg) values(?,?,?);");
 			sql.setString(1, user.getNome());
 			sql.setString(2, user.getEmail());
 			sql.setString(3, user.getMensagem());
@@ -32,7 +33,7 @@ public class UsuarioDao{
 		try {
 			Connection conexao = Conexao.getConn();
 			PreparedStatement sql;
-			sql = conexao.prepareStatement("select * from tb_usuario order by id desc;");
+			sql = conexao.prepareStatement("select * from tb_msg order by id desc;");
 			ResultSet rs = sql.executeQuery();
 			List<Usuario> ls = new ArrayList<Usuario>();
 			while(rs.next()){
@@ -40,7 +41,7 @@ public class UsuarioDao{
 				u.setId(rs.getInt("id"));
 				u.setNome(rs.getString("nome"));
 				u.setEmail(rs.getString("email"));
-				u.setMensagem(rs.getString("mensagem"));
+				u.setMensagem(rs.getString("msg"));
 				ls.add(u);
 			}
 			sql.close();
@@ -56,7 +57,7 @@ public class UsuarioDao{
 		try {
 			Connection conexao = Conexao.getConn();
 			PreparedStatement sql;
-			sql = conexao.prepareStatement("select * from tb_usuario where id = ?;");
+			sql = conexao.prepareStatement("select * from tb_msg where id = ?;");
 			sql.setInt(1, Integer.parseInt(id));
 			
 			ResultSet rs = sql.executeQuery();
@@ -65,7 +66,7 @@ public class UsuarioDao{
 				u.setId(rs.getInt("id"));
 				u.setNome(rs.getString("nome"));
 				u.setEmail(rs.getString("email"));
-				u.setMensagem(rs.getString("mensagem"));
+				u.setMensagem(rs.getString("msg"));
 			}
 			sql.close();
 			conexao.close();
@@ -80,7 +81,7 @@ public class UsuarioDao{
 		try {
 			Connection conexao = Conexao.getConn();
 			PreparedStatement sql;
-			sql = conexao.prepareStatement("update tb_usuario set nome=?, email=?, mensagem=? where id=?;");
+			sql = conexao.prepareStatement("update tb_msg set nome=?, email=?, msg=? where id=?;");
 			
 			sql.setString(1, u.getNome());
 			sql.setString(2, u.getEmail());
@@ -100,7 +101,7 @@ public class UsuarioDao{
 		try {
 			Connection conexao = Conexao.getConn();
 			PreparedStatement sql;
-			sql = conexao.prepareStatement("delete from tb_usuario where id=?;");
+			sql = conexao.prepareStatement("delete from tb_msg where id=?;");
 			sql.setInt(1, Integer.parseInt(id));
 			sql.execute();
 			sql.close();

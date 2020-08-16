@@ -16,12 +16,15 @@
 			color: white;
 			text-shadow: 0px 3px 1px black;
 		}
+		span[title="inative"]{
+			cursor: pointer;
+		}
 		table{
-			width: 80%;
+			width: 85%;
 			margin-left:auto;
 			margin-right:auto;
-			margin-botton: 40px;
-			border: 1px solid white;
+			margin-bottom: 40px;
+			border: 3px solid white;
 			border-spacing: 0px;
 			background-color: rgba(255,255,255,.6);
 
@@ -57,8 +60,8 @@
 		.verd{
 			background-color: green;
 		}
-		.verm{
-			background-color: red;
+		.gray{
+			background-color: gray;
 		}
 @media (max-width: 1360px) {
   .some {
@@ -119,7 +122,9 @@
 						  "</td><td>"+user.getNome()+
 						  "</td><td>"+user.getEmail()+
 						  "</td><td class=\"some\">"+user.getMensagem()+"</td>"+
-						  "<td><a href='index.jsp?id="+user.getId()+"&act=atualizar'><span title=\"alterar\" class=\"ico verd\">&#9998;</span></a></td><td><a href='XServlet?id="+user.getId()+"&act=deletar' onclick=\"return confirm('Deseja excluir esse registro?')\"><span title=\"apagar\" class=\"ico verm\">&#10005;</span></a></td></tr>");
+						  "<td><a href='index.jsp?id="+user.getId()+"&act=atualizar'><span title=\"alterar\" class=\"ico verd\">&#9998;</span></a></td>"+
+						  //"<td><a href='XServlet?id="+user.getId()+"&act=deletar' onclick=\"return confirm('Deseja excluir esse registro?')\"><span title=\"apagar\" class=\"ico verm\">&#10005;</span></a></td></tr>");
+						  	"<td><span title=\"inative\" class=\"ico gray\">&#10005;</span></td></tr>");
 				n--;
 			}
 		%>

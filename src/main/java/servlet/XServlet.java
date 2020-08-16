@@ -80,7 +80,6 @@ public class XServlet extends HttpServlet {
 				out.print("Ocorreu um erro e sua mensagem não foi enviada.");			
 			}
 		}else if(act.equals("deletar")){
-			//out.print("Deletado! "+id+" act: "+act);
 			if(dao.deletar(id)){
 				out.print("<script>alert('Atenção! \n A mensagem foi apagada!');</script>");
 				out.print("<h1>&#9996;</h1>");

@@ -103,6 +103,7 @@ Usuario u = new Usuario();
 UsuarioDao dao = new UsuarioDao();
 
 if(id != null){
+	//out.println("<script>alert('Id:"+id+" Action:"+act+"');</script>");
 	u = dao.consulta(id);
 	act = "atualizar";
 }else{
